@@ -71,3 +71,22 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+
+PETICION HTTP 
+  ->MIDDLEWARE,INTERCEPTOR,PIPE
+    ->MANEJADOR DE RUTAS
+      ->CONTROLADOR
+        ->SERVICIO
+          -> Repositorio
+            -> Base de datos 
+
+
+Para crear controlador:
+NEST G CO
+NEST G CO <nombre del controlador> 
+Para que no se cree con el test:
+NEST G CO <nombre del controlador> --no-spec
+Para que salga el ejemplo sin que se cree:
+NEST G CO <nombre del controlador> --dry-run
