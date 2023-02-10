@@ -90,3 +90,11 @@ Para que no se cree con el test:
 NEST G CO <nombre del controlador> --no-spec
 Para que salga el ejemplo sin que se cree:
 NEST G CO <nombre del controlador> --dry-run
+
+Servicio:
+Permite colocar la logica de negocio de los controladores. Permite que el codigo sea reutilizable
+En nest Js c/servicio es un proveedor, es decir que su objetivo es proveer las dependencias necesarias de un consumidor
+
+Para crearlos
+NEST GENERATE SERVICE
+NEST G S

@@ -1,58 +1,42 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { get } from 'http';
+import { Tuit } from './tuit.entity';
+import { TuitsService } from './tuits.service';
 
 
-//EL CONTROLADOR// lo que esta entre parentecis sera la ruta mapeada
+//EL CONTROLADOR// lo que esta entre parentesis sera la ruta mapeada
 
 @Controller('tuits')
 export class TuitsController {
+    constructor(private readonly tuitService: TuitsService) {
 
-    //las rutas se ejecutan en el orden en el que son puestas
-    //GET
-    //este es el decorador con el metodo GET
-    @Get()
-    getTuits() {
-        return "Hello from twitter"
     }
 
-    //La funcion debe ser distinta, no se debe repetir 
-    //getTuits getTuit
-    @Get(':id')
-    getTuit(@Param() params) {
-        return `Your tuit id is ${params.id}`
-    }
-    //Variante
-    //getTuit(@Param('id') id: string): string {
-    //    return `Your tuit id is ${id}`
-    //}
-    //POST
-    @Post()
-    createTuit(@Body() body) {
-        return body
-    }
-    //variante
-    //@Post()
-    //createTuit(@Body('message') message: string){
-    //    return ' Your tuit was: ${message}'
-    //}
+   @Get()
+   getTuits(@Query() filterQuery): Tuit[] { 
+    const { searchTerm, orderBy} = filterQuery;
+    return this.tuitService.getTuits()
+   }
 
-    //PARA CAMBIAR EL ESTADO QUE NEST TRAE POR DEFAULD
-    @Post()
-    @HttpCode(HttpStatus.NO_CONTENT)
-    noContent(@Body('message') message: string) {
-        return `Your trui`
-    }
+   @Get(':id')
+   getTuit(@Param('id') id: string): Tuit{
+    return this.tuitService.getTuit(id)
+   }
 
-    
-    @Patch(':id')
-    updateTuit(@Param('id') id: string, @Body() tuit): string {
-        return `Tuit ${id} has been update`
-    }
+   @Post()
+   createTuit(@Body('message') message: string): void {
+    return this.tuitService.creatTuit(message);
+   }
 
-    @Delete(':id')
-    deleteTuit(@Param('id') id: string): string {
-        return `Tuit ${id} has been deleted`
-    }
+   @Patch(':id')
+   updateTuit(@Param('id') id: string, @Body('message') tuit): void{
+    return this.tuitService.updateTuit(id,tuit);
+   }
 
+   @Delete(':id')
+   removeTuit(@Param('id') id: string): void{
+    return this.tuitService.removeTuit(id);
+   }
 
 
 }
