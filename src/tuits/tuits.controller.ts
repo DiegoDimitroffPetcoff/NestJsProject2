@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { get } from 'http';
 import { Tuit } from './tuit.entity';
 import { TuitsService } from './tuits.service';
@@ -15,7 +15,7 @@ export class TuitsController {
    @Get()
    getTuits(@Query() filterQuery): Tuit[] { 
     const { searchTerm, orderBy} = filterQuery;
-    return this.tuitService.getTuits()
+    return this.tuitService.getTuits();
    }
 
    @Get(':id')
