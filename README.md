@@ -98,3 +98,11 @@ En nest Js c/servicio es un proveedor, es decir que su objetivo es proveer las d
 Para crearlos
 NEST GENERATE SERVICE
 NEST G S
+
+
+
+CRUD
+GET > Devuelve todos los tuits
+POST > Se agrega un "Tuit"  y devuelve Un objeto con el Tuit nuevo recientemente agregado mas la lista de todos los tuist
+PATCH > Devuelve el "Tuit" editado como un objeto.
+DELETED > Agregando el ID del Tuit que se quiere eliminr, devuelve el Tuit eliminado
